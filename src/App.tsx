@@ -207,14 +207,16 @@ const App: React.FC = () => {
         </Routes>
 
         <footer>
+          <div style={{ marginBottom: '0.5rem' }}>
+            &copy; {new Date().getFullYear()} {t('title')} by @simoBenazzouz. {t('footer')}
+          </div>
           <div className="footer-links">
             <Link to="/about">{t('about')}</Link>
             <Link to="/privacy-policy">{t('privacy')}</Link>
             <Link to="/terms-of-service">{t('terms')}</Link>
             <a href="mailto:support@pdf2doc-online.com">{t('contact')}</a>
           </div>
-          &copy; {new Date().getFullYear()} {t('title')} by @simoBenazzouz. {t('footer')}
-          <div style={{ marginTop: '0.25rem', fontSize: '0.65rem' }}>Local processing • No file storage</div>
+          <div style={{ marginTop: '0.4rem', fontSize: '0.65rem', opacity: 0.5 }}>Local processing • No file storage</div>
         </footer>
       </div>
     </Router>
