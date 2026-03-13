@@ -5,8 +5,8 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 const resources = {
   en: {
     translation: {
-      title: "PDF2WORD Online",
-      description: "Ultra-fast, two-way conversion solution. Transform your PDFs to Word and your Word files to PDF instantly, securely, and directly in your browser.",
+      title: "PDF to Word & Word to PDF Online - Free & Instant - PDF2WORD",
+      description: "Convert PDF to Word and Word to PDF online for free. Fast, high-quality, and 100% private document conversion directly in your browser. No software installation needed.",
       pdfToWord: "PDF to Word",
       wordToPdf: "Word to PDF",
       dropPdf: "Drop your PDF here",
@@ -38,8 +38,8 @@ const resources = {
   },
   fr: {
     translation: {
-      title: "PDF2WORD Online",
-      description: "Solution de conversion ultra-rapide et bidirectionnelle. Transformez vos PDF en Word et vos fichiers Word en PDF instantanément, en toute sécurité et directement dans votre navigateur.",
+      title: "Convertir PDF en Word & Word en PDF Gratuit - Rapide & Sécurisé - PDF2WORD",
+      description: "Transformez vos fichiers PDF en documents Word modifiables instantanément. Rapide, gratuit et sécurisé. Tout se passe dans votre navigateur pour une confidentialité maximale.",
       pdfToWord: "PDF vers Word",
       wordToPdf: "Word vers PDF",
       dropPdf: "Déposez votre PDF ici",

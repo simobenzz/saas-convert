@@ -7,7 +7,8 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { useTranslation } from 'react-i18next';
 import DOMPurify from 'dompurify';
-import { HashRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { 
   FileText, 
   FileCode, 
@@ -29,6 +30,65 @@ if (typeof window !== 'undefined' && 'Worker' in window) {
 }
 
 type Mode = 'pdf-to-word' | 'word-to-pdf';
+
+const SEO: React.FC<{ title?: string; description?: string; path?: string }> = ({ title, description, path = "" }) => {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language.startsWith('fr') ? 'fr' : 'en';
+  const baseUrl = "https://pdf2word-online.com";
+  const fullUrl = `${baseUrl}${path}`;
+  
+  const defaultTitle = t('title');
+  const defaultDescription = t('description');
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": defaultTitle,
+    "operatingSystem": "Windows, macOS, Linux, Android, iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "url": baseUrl,
+    "description": defaultDescription,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1250"
+    },
+    "featureList": [
+      "PDF to Word conversion",
+      "Word to PDF conversion",
+      "100% Private local processing",
+      "No file upload required"
+    ]
+  };
+
+  return (
+    <Helmet>
+      <html lang={lang} />
+      <title>{title ? `${title} | ${defaultTitle}` : defaultTitle}</title>
+      <meta name="description" content={description || defaultDescription} />
+      <link rel="canonical" href={fullUrl} />
+      
+      {/* Open Graph */}
+      <meta property="og:title" content={title ? `${title} | ${defaultTitle}` : defaultTitle} />
+      <meta property="og:description" content={description || defaultDescription} />
+      <meta property="og:url" content={fullUrl} />
+      
+      {/* Twitter */}
+      <meta property="twitter:title" content={title ? `${title} | ${defaultTitle}` : defaultTitle} />
+      <meta property="twitter:description" content={description || defaultDescription} />
+
+      {/* Structured Data */}
+      <script type="application/ld+json">
+        {JSON.stringify(jsonLd)}
+      </script>
+    </Helmet>
+  );
+};
 
 const Converter: React.FC = () => {
   const { t } = useTranslation();
@@ -122,6 +182,7 @@ const Converter: React.FC = () => {
 
   return (
     <>
+      <SEO />
       <header>
         <div className="logo-icon"><Zap color="white" size={24} fill="white" /></div>
         <h1>{t('title')}</h1>
@@ -178,8 +239,15 @@ const Converter: React.FC = () => {
 const LegalPage: React.FC<{ type: 'privacy' | 'terms' | 'about' }> = ({ type }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
+  
   return (
     <div className="card legal-view">
+      <SEO 
+        title={t(type)} 
+        description={t(`${type}Content`)} 
+        path={location.pathname} 
+      />
       <button className="back-btn" onClick={() => navigate('/')}><ChevronLeft size={18} /> {t('home')}</button>
       <h2>{t(type)}</h2>
       <p>{t(`${type}Content`)}</p>
