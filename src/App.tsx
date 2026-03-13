@@ -214,7 +214,7 @@ const App: React.FC = () => {
             <Link to="/about">{t('about')}</Link>
             <Link to="/privacy-policy">{t('privacy')}</Link>
             <Link to="/terms-of-service">{t('terms')}</Link>
-            <a href="mailto:support@pdf2doc-online.com">{t('contact')}</a>
+            <a href="mailto:support@pdf2word-online.com">{t('contact')}</a>
           </div>
           <div style={{ marginTop: '0.4rem', fontSize: '0.65rem', opacity: 0.5 }}>Local processing • No file storage</div>
         </footer>

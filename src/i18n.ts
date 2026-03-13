@@ -5,7 +5,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 const resources = {
   en: {
     translation: {
-      title: "PDF2DOC Online",
+      title: "PDF2WORD Online",
       description: "Ultra-fast, two-way conversion solution. Transform your PDFs to Word and your Word files to PDF instantly, securely, and directly in your browser.",
       pdfToWord: "PDF to Word",
       wordToPdf: "Word to PDF",
@@ -29,16 +29,16 @@ const resources = {
       contact: "Contact",
       home: "Home",
       about: "About",
-      aboutContent: "PDF2DOC Online is a premium, secure, and fast document utility. Our mission is to provide high-quality conversion tools that respect user privacy by processing all files locally in the browser.",
-      contactContent: "Have questions or feedback? Reach out to us at support@pdf2doc-online.com.",
-      disclaimer: "Disclaimer: PDF2DOC Online is an independent tool and is not affiliated with Adobe or Microsoft.",
+      aboutContent: "PDF2WORD Online is a premium, secure, and fast document utility. Our mission is to provide high-quality conversion tools that respect user privacy by processing all files locally in the browser.",
+      contactContent: "Have questions or feedback? Reach out to us at support@pdf2word-online.com.",
+      disclaimer: "Disclaimer: PDF2WORD Online is an independent tool and is not affiliated with Adobe or Microsoft.",
       privacyContent: "We respect your privacy. All document processing is performed locally in your browser. We never upload, store, or see your files. No personal data is collected during the conversion process.",
-      termsContent: "By using PDF2DOC Online, you agree to use this tool for lawful purposes. The service is provided 'as is' without warranty of any kind. We are not responsible for any data loss or conversion inaccuracies."
+      termsContent: "By using PDF2WORD Online, you agree to use this tool for lawful purposes. The service is provided 'as is' without warranty of any kind. We are not responsible for any data loss or conversion inaccuracies."
     }
   },
   fr: {
     translation: {
-      title: "PDF2DOC Online",
+      title: "PDF2WORD Online",
       description: "Solution de conversion ultra-rapide et bidirectionnelle. Transformez vos PDF en Word et vos fichiers Word en PDF instantanément, en toute sécurité et directement dans votre navigateur.",
       pdfToWord: "PDF vers Word",
       wordToPdf: "Word vers PDF",
@@ -62,9 +62,9 @@ const resources = {
       contact: "Contact",
       home: "Accueil",
       about: "À propos",
-      aboutContent: "PDF2DOC Online est un utilitaire de documents premium, sécurisé et rapide. Notre mission est de fournir des outils de conversion de haute qualité qui respectent la vie privée des utilisateurs.",
-      contactContent: "Vous avez des questions ou des commentaires ? Contactez-nous à support@pdf2doc-online.com.",
-      disclaimer: "Note : PDF2DOC Online est un outil indépendant non affilié à Adobe ou Microsoft.",
+      aboutContent: "PDF2WORD Online est un utilitaire de documents premium, sécurisé et rapide. Notre mission est de fournir des outils de conversion de haute qualité qui respectent la vie privée des utilisateurs.",
+      contactContent: "Vous avez des questions ou des commentaires ? Contactez-nous à support@pdf2word-online.com.",
+      disclaimer: "Note : PDF2WORD Online est un outil indépendant non affilié à Adobe ou Microsoft.",
       privacyContent: "Nous respectons votre vie privée. Tout le traitement des documents est effectué localement dans votre navigateur. Nous ne téléchargeons, ne stockons et ne voyons jamais vos fichiers.",
       termsContent: "En utilisant ce site, vous acceptez nos conditions. Le service est fourni 'tel quel'. Nous ne sommes pas responsables des erreurs de conversion."
     }
