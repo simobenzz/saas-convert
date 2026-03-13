@@ -240,17 +240,25 @@ const LegalPage: React.FC<{ type: 'privacy' | 'terms' | 'about' }> = ({ type }) 
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
+  const content = t(`${type}Content`);
   
   return (
     <div className="card legal-view">
       <SEO 
         title={t(type)} 
-        description={t(`${type}Content`)} 
+        description={content.substring(0, 160)} 
         path={location.pathname} 
       />
       <button className="back-btn" onClick={() => navigate('/')}><ChevronLeft size={18} /> {t('home')}</button>
       <h2>{t(type)}</h2>
-      <p>{t(`${type}Content`)}</p>
+      <div className="legal-content">
+        {content.split('\n').map((line, i) => {
+          if (line.startsWith('###')) {
+            return <h3 key={i} style={{ marginTop: '1.5rem', marginBottom: '0.75rem', color: 'white' }}>{line.replace('###', '').trim()}</h3>;
+          }
+          return line.trim() ? <p key={i} style={{ marginBottom: '1rem' }}>{line}</p> : <br key={i} />;
+        })}
+      </div>
       <p style={{ marginTop: '1rem', fontSize: '0.85rem', opacity: 0.8 }}>{t('disclaimer')}</p>
     </div>
   );
