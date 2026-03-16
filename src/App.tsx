@@ -75,9 +75,9 @@ const SEO: React.FC<{ title?: string; description?: string; path?: string }> = (
       <link rel="canonical" href={fullUrl} />
       
       {/* SEO Alternate Languages */}
-      <link rel="alternate" href={`${baseUrl}/en/${path.split('/').slice(2).join('/')}`} hreflang="en" />
-      <link rel="alternate" href={`${baseUrl}/fr/${path.split('/').slice(2).join('/')}`} hreflang="fr" />
-      <link rel="alternate" href={`${baseUrl}/en/${path.split('/').slice(2).join('/')}`} hreflang="x-default" />
+      <link rel="alternate" href={`${baseUrl}/en/${path.split('/').slice(2).join('/')}`} hrefLang="en" />
+      <link rel="alternate" href={`${baseUrl}/fr/${path.split('/').slice(2).join('/')}`} hrefLang="fr" />
+      <link rel="alternate" href={`${baseUrl}/en/${path.split('/').slice(2).join('/')}`} hrefLang="x-default" />
       
       {/* Open Graph */}
       <meta property="og:title" content={title ? `${title} | ${defaultTitle}` : defaultTitle} />
