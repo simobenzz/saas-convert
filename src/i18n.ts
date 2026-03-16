@@ -5,8 +5,8 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 const resources = {
   en: {
     translation: {
-      title: "PDF to Word & Word to PDF Online - Free & Instant - PDF2WORD",
-      description: "Convert PDF to Word and Word to PDF online for free. Fast, high-quality, and 100% private document conversion directly in your browser. No software installation needed.",
+      title: "Convert PDF to Word online for free",
+      description: "Convert PDF to Word and Word to PDF online for free. Use our fast, high-quality free word pdf convert tool for 100% private document conversion directly in your browser. The best online converter to convert PDF to DOCX instantly.",
       pdfToWord: "PDF to Word",
       wordToPdf: "Word to PDF",
       dropPdf: "Drop your PDF here",
@@ -38,8 +38,8 @@ const resources = {
   },
   fr: {
     translation: {
-      title: "Convertir PDF en Word & Word en PDF Gratuit - Rapide & Sécurisé - PDF2WORD",
-      description: "Transformez vos fichiers PDF en documents Word modifiables instantanément. Rapide, gratuit et sécurisé. Tout se passe dans votre navigateur pour une confidentialité maximale.",
+      title: "Convertir PDF en WORD",
+      description: "Convertir PDF en WORD gratuitement. Utilisez notre convertisseur gratuit pour transformer vos fichiers PDF en documents Word modifiables instantanément. Rapide, sécurisé et 100% privé, sans installation.",
       pdfToWord: "PDF vers Word",
       wordToPdf: "Word vers PDF",
       dropPdf: "Déposez votre PDF ici",
@@ -76,13 +76,12 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'en', // Force English as default
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false
     },
     detection: {
-      order: ['localStorage', 'cookie', 'htmlTag'],
+      order: ['path', 'localStorage', 'cookie', 'htmlTag'],
       caches: ['localStorage']
     }
   });

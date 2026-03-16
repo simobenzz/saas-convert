@@ -1,26 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://pdf2word-online.com/</loc>
-    <lastmod>2026-03-13</lastmod>
+    <loc>https://pdf2word-online.com/en/</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://pdf2word-online.com/about</loc>
-    <lastmod>2026-03-13</lastmod>
+    <loc>https://pdf2word-online.com/en/about</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pdf2word-online.com/privacy-policy</loc>
-    <lastmod>2026-03-13</lastmod>
+    <loc>https://pdf2word-online.com/en/privacy-policy</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pdf2word-online.com/terms-of-service</loc>
-    <lastmod>2026-03-13</lastmod>
+    <loc>https://pdf2word-online.com/en/terms-of-service</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pdf2word-online.com/fr/</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://pdf2word-online.com/fr/about</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pdf2word-online.com/fr/privacy-policy</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pdf2word-online.com/fr/terms-of-service</loc>
+    <lastmod>2026-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

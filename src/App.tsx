@@ -7,8 +7,9 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { useTranslation } from 'react-i18next';
 import DOMPurify from 'dompurify';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation, useParams, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 import { 
   FileText, 
   FileCode, 
@@ -72,6 +73,11 @@ const SEO: React.FC<{ title?: string; description?: string; path?: string }> = (
       <title>{title ? `${title} | ${defaultTitle}` : defaultTitle}</title>
       <meta name="description" content={description || defaultDescription} />
       <link rel="canonical" href={fullUrl} />
+      
+      {/* SEO Alternate Languages */}
+      <link rel="alternate" href={`${baseUrl}/en/${path.split('/').slice(2).join('/')}`} hreflang="en" />
+      <link rel="alternate" href={`${baseUrl}/fr/${path.split('/').slice(2).join('/')}`} hreflang="fr" />
+      <link rel="alternate" href={`${baseUrl}/en/${path.split('/').slice(2).join('/')}`} hreflang="x-default" />
       
       {/* Open Graph */}
       <meta property="og:title" content={title ? `${title} | ${defaultTitle}` : defaultTitle} />
@@ -237,9 +243,10 @@ const Converter: React.FC = () => {
 };
 
 const LegalPage: React.FC<{ type: 'privacy' | 'terms' | 'about' }> = ({ type }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
+  const lang = i18n.language.startsWith('fr') ? 'fr' : 'en';
   const content = t(`${type}Content`);
   
   return (
@@ -249,7 +256,7 @@ const LegalPage: React.FC<{ type: 'privacy' | 'terms' | 'about' }> = ({ type }) 
         description={content.substring(0, 160)} 
         path={location.pathname} 
       />
-      <button className="back-btn" onClick={() => navigate('/')}><ChevronLeft size={18} /> {t('home')}</button>
+      <button className="back-btn" onClick={() => navigate(`/${lang}/`)}><ChevronLeft size={18} /> {t('home')}</button>
       <h2>{t(type)}</h2>
       <div className="legal-content">
         {content.split('\n').map((line, i) => {
@@ -264,36 +271,64 @@ const LegalPage: React.FC<{ type: 'privacy' | 'terms' | 'about' }> = ({ type }) 
   );
 };
 
+const LangWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { lang } = useParams<{ lang: string }>();
+  const { i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (lang && (lang === 'en' || lang === 'fr')) {
+      if (i18n.language !== lang) {
+        i18n.changeLanguage(lang);
+      }
+    } else {
+      // Redirect invalid lang to default en, preserving subpath
+      const subPath = location.pathname.split('/').slice(2).join('/');
+      navigate('/en/' + subPath, { replace: true });
+    }
+  }, [lang, i18n, navigate, location.pathname]);
+
+  return <>{children}</>;
+};
+
 const App: React.FC = () => {
   const { t, i18n } = useTranslation();
 
   return (
     <Router>
       <div className="container">
-        <div className="lang-switcher">
-          <button className={i18n.language === 'en' ? 'active' : ''} onClick={() => i18n.changeLanguage('en')}>EN</button>
-          <button className={i18n.language.startsWith('fr') ? 'active' : ''} onClick={() => i18n.changeLanguage('fr')}>FR</button>
-        </div>
-
         <Routes>
-          <Route path="/" element={<Converter />} />
-          <Route path="/privacy-policy" element={<LegalPage type="privacy" />} />
-          <Route path="/terms-of-service" element={<LegalPage type="terms" />} />
-          <Route path="/about" element={<LegalPage type="about" />} />
-        </Routes>
+          <Route path="/" element={<Navigate to="/en/" replace />} />
+          <Route path="/:lang/*" element={
+            <LangWrapper>
+              <div className="lang-switcher">
+                <Link to="/en/" className={i18n.language === 'en' ? 'active' : ''}>EN</Link>
+                <Link to="/fr/" className={i18n.language.startsWith('fr') ? 'active' : ''}>FR</Link>
+              </div>
 
-        <footer>
-          <div style={{ marginBottom: '0.5rem' }}>
-            &copy; {new Date().getFullYear()} {t('title')} by @simoBenazzouz. {t('footer')}
-          </div>
-          <div className="footer-links">
-            <Link to="/about">{t('about')}</Link>
-            <Link to="/privacy-policy">{t('privacy')}</Link>
-            <Link to="/terms-of-service">{t('terms')}</Link>
-            <a href="mailto:support@pdf2word-online.com">{t('contact')}</a>
-          </div>
-          <div style={{ marginTop: '0.4rem', fontSize: '0.65rem', opacity: 0.5 }}>Local processing • No file storage</div>
-        </footer>
+              <Routes>
+                <Route path="/" element={<Converter />} />
+                <Route path="/privacy-policy" element={<LegalPage type="privacy" />} />
+                <Route path="/terms-of-service" element={<LegalPage type="terms" />} />
+                <Route path="/about" element={<LegalPage type="about" />} />
+              </Routes>
+
+              <footer>
+                <div style={{ marginBottom: '0.5rem' }}>
+                  &copy; {new Date().getFullYear()} {t('title')} by @simoBenazzouz. {t('footer')}
+                </div>
+                <div className="footer-links">
+                  <Link to={`/${i18n.language.startsWith('fr') ? 'fr' : 'en'}/about`}>{t('about')}</Link>
+                  <Link to={`/${i18n.language.startsWith('fr') ? 'fr' : 'en'}/privacy-policy`}>{t('privacy')}</Link>
+                  <Link to={`/${i18n.language.startsWith('fr') ? 'fr' : 'en'}/terms-of-service`}>{t('terms')}</Link>
+                  <a href="mailto:support@pdf2word-online.com">{t('contact')}</a>
+                </div>
+                <div style={{ marginTop: '0.4rem', fontSize: '0.65rem', opacity: 0.5 }}>Local processing • No file storage</div>
+              </footer>
+            </LangWrapper>
+          } />
+        </Routes>
       </div>
     </Router>
   );
